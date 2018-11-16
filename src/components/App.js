@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import styles from "../styles/main.scss";
-import Button from "./Button/Button";
+import { connect } from "react-redux";
+
+import TaskPage from "./TaskPage";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Button label="Regular Button" />
+        <TaskPage tasks={this.props.tasks} />
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    tasks: state.tasks
+  };
+}
+
+export default connect(mapStateToProps)(App);
