@@ -1,10 +1,16 @@
-import React, { Component } from "react";
-import styles from "./Button.scss";
+import React from "react";
+import "./Button.scss";
 
-class Button extends Component {
-  render() {
-    return <button className={styles.button}>{this.props.label}</button>;
-  }
-}
+const Button = props => {
+  return (
+    <button
+      className="button"
+      type={props.buttonType}
+      onClick={props.onCreateTask}
+    >
+      {props.label}
+    </button>
+  );
+};
 
 export default Button;

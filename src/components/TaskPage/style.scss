@@ -1,0 +1,12 @@
+@import "../../styles/partials/variables";
+
+.tasks {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  margin-top: $margin-top;
+
+  .task-list-container {
+    margin-top: $margin-top;
+  }
+}

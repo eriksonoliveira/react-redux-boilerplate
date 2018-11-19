@@ -1,11 +1,11 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const autoprefixer = require("autoprefixer");
 
 const devMode = process.env.NODE_ENV !== "production";
 const SRC_DIR = "./src/";
-const DIST_DIR = path.resolve(__dirname + "dist");
+const DIST_DIR = __dirname + "/dist";
 
 module.exports = {
   entry: SRC_DIR + "/index.js",
@@ -25,17 +25,10 @@ module.exports = {
       {
         test: /\.(scss|sass|css)$/,
         exclude: /node_modules/,
-        loaders: [
+        use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[local]__[hash:base64:5]"
-            }
-          },
+          "css-loader",
+          "postcss-loader",
           "sass-loader"
         ]
       },
@@ -60,6 +53,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer()]
+      }
     })
   ],
   devServer: {
