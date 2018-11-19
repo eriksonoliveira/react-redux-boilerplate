@@ -1,5 +1,7 @@
 import { uniqueId } from "../actions";
 import { CREATE_TASK, EDIT_TASK } from "../constants";
+
+// Initial data
 const mockTasks = [
   {
     id: uniqueId(),
@@ -13,6 +15,7 @@ const mockTasks = [
   }
 ];
 
+// Updates the store in response to actions
 export default function tasksReducer(state = { tasks: mockTasks }, action) {
   switch (action.type) {
     case CREATE_TASK:

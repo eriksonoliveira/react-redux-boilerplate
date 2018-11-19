@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../styles/main.scss";
 import { connect } from "react-redux";
 import { createTask, editTask } from "../actions";
 
+import "../styles/main.scss";
 import TaskPage from "./TaskPage";
 
 class App extends Component {
