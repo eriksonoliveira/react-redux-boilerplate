@@ -1,8 +1,10 @@
 import { createStore } from "redux";
 import { devToolsEnhancer } from "redux-devtools-extension";
-import taskReducer from "../reducers";
 
-const store = createStore(taskReducer, devToolsEnhancer());
+import tasksReducer from "../reducers/TasksReducer";
+// import rootReducer from "../reducers";
+
+const store = createStore(tasksReducer, devToolsEnhancer());
 
 if (module.hot) {
   module.hot.accept("../reducers", () => {
