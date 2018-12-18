@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createTask, editTask } from "../actions";
+import { createTask, editTask, fetchTasks } from "../actions";
 
 import "../styles/main.scss";
 import TaskPage from "./TaskPage";
 
 class App extends Component {
-  onCreateTask = ({ title }) => {
-    this.props.dispatch(createTask({ title }));
+  componentDidMount() {
+    this.props.dispatch(fetchTasks());
+  }
+
+  onCreateTask = ({ title, description }) => {
+    this.props.dispatch(createTask({ title, description }));
   };
 
   onStatusChange = (id, status) => {

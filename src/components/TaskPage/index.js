@@ -11,19 +11,27 @@ class TaskPage extends Component {
     super(props);
     this.state = {
       showNewCardForm: false,
-      title: ""
+      title: "",
+      description: ""
     };
   }
 
-  onInputChange = e => {
+  onTitleChange = e => {
     this.setState({
       title: e.target.value
     });
   };
 
+  onDescriptionChange = e => {
+    this.setState({
+      description: e.target.value
+    });
+  };
+
   resetForm = () => {
     this.setState({
-      title: ""
+      title: "",
+      description: ""
     });
   };
 
@@ -46,7 +54,8 @@ class TaskPage extends Component {
     e.preventDefault();
     if (this.state.title.length > 0) {
       this.props.onCreateTask({
-        title: this.state.title
+        title: this.state.title,
+        description: this.state.description
       });
       this.resetForm();
     }
@@ -67,9 +76,10 @@ class TaskPage extends Component {
         />
         {this.state.showNewCardForm && (
           <InputField
-            onInputChange={this.onInputChange}
+            onTitleChange={this.onTitleChange}
+            onDescriptionChange={this.onDescriptionChange}
             onCreateTask={this.onCreateTask}
-            value={this.state.title}
+            {...this.state}
           />
         )}
         <div className="task-list-container">{this.renderTaskList()}</div>

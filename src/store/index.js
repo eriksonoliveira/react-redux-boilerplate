@@ -1,10 +1,14 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import tasksReducer from "../reducers/TasksReducer";
 // import rootReducer from "../reducers";
 
-const store = createStore(tasksReducer, devToolsEnhancer());
+const store = createStore(
+  tasksReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 if (module.hot) {
   module.hot.accept("../reducers", () => {

@@ -12,6 +12,9 @@ const Task = props => {
           </option>
         ))}
       </select>
+      <br />
+      <br />
+      <div>{props.task.description}</div>
     </div>
   );
   function onStatusChange(e) {

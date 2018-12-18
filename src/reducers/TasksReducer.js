@@ -1,24 +1,7 @@
-import { uniqueId } from "../actions";
-import { CREATE_TASK, EDIT_TASK } from "../constants";
-
-// Initial data
-const mockTasks = {
-  tasks: [
-    {
-      id: uniqueId(),
-      title: "task 1",
-      status: "Unstarted"
-    },
-    {
-      id: uniqueId(),
-      title: "task 2",
-      status: "In Progress"
-    }
-  ]
-};
+import { CREATE_TASK, EDIT_TASK, FETCH_TASKS_SUCCEEDED } from "../constants";
 
 // Updates the store in response to actions
-export default function tasksReducer(state = mockTasks, action) {
+export default function tasksReducer(state = { tasks: [] }, action) {
   switch (action.type) {
     case CREATE_TASK: {
       return { tasks: state.tasks.concat(action.payload) };
@@ -31,6 +14,11 @@ export default function tasksReducer(state = mockTasks, action) {
           }
           return task;
         })
+      };
+    }
+    case FETCH_TASKS_SUCCEEDED: {
+      return {
+        tasks: action.payload.tasks
       };
     }
     default:
